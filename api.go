@@ -36,7 +36,7 @@ func makeHTTPHandler(apiFn APIFunc) http.HandlerFunc {
 
 	return func(w http.ResponseWriter, r *http.Request) {
 		if err := apiFn(ctx, w, r); err != nil {
-			if err := writeJSON(w, http.StatusInternalServerError, "error:"+err.Error()); err != nil {
+			if err := writeJSON(w, http.StatusInternalServerError, map[string]any{"error": err.Error()}); err != nil {
 				logrus.Errorln(err)
 			}
 		}
