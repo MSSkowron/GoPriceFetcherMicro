@@ -6,13 +6,9 @@ import (
 	"math/rand"
 	"net/http"
 
+	"github.com/MSSkowron/GoPriceFetcher/types"
 	"github.com/sirupsen/logrus"
 )
-
-type PriceResponse struct {
-	Ticker string  `json:"ticker"`
-	Price  float64 `json:"price"`
-}
 
 type APIFunc func(context.Context, http.ResponseWriter, *http.Request) error
 
@@ -55,7 +51,7 @@ func (s *JSONAPIServer) handleFetchPrice(ctx context.Context, w http.ResponseWri
 		return err
 	}
 
-	priceResponse := &PriceResponse{
+	priceResponse := &types.PriceResponse{
 		Ticker: ticker,
 		Price:  price,
 	}
