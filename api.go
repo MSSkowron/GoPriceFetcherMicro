@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"log"
 	"math/rand"
 	"net/http"
 
@@ -27,7 +28,9 @@ func NewJSONAPIServer(a string, s PriceFetcher) *JSONAPIServer {
 func (s *JSONAPIServer) Run() {
 	http.HandleFunc("/", makeHTTPHandler(s.handleFetchPrice))
 
-	http.ListenAndServe(s.listenAddr, nil)
+	if err := http.ListenAndServe(s.listenAddr, nil); err != nil {
+		log.Fatalln(err)
+	}
 }
 
 func makeHTTPHandler(apiFn APIFunc) http.HandlerFunc {
