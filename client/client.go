@@ -9,6 +9,13 @@ import (
 	"github.com/MSSkowron/GoPriceFetcher/types"
 )
 
+// Client
+// client := client.NewClient("http://localhost:3000")
+// price, err := client.FetchPrice(context.Background(), "BTC")
+// if err != nil {
+// 	log.Fatalln(err)
+// }
+// fmt.Printf("%+v\n", price)
 type Client struct {
 	endpoint string
 }
