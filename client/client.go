@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/MSSkowron/GoPriceFetcher/types"
+	"github.com/MSSkowron/GoMicroPriceFetcher/types"
 )
 
 // Client

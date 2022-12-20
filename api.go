@@ -7,7 +7,7 @@ import (
 	"math/rand"
 	"net/http"
 
-	"github.com/MSSkowron/GoPriceFetcher/types"
+	"github.com/MSSkowron/GoMicroPriceFetcher/types"
 	"github.com/sirupsen/logrus"
 )
 
