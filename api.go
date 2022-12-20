@@ -33,9 +33,13 @@ func (s *JSONAPIServer) Run() {
 	}
 }
 
+type key string
+
 func makeHTTPHandler(apiFn APIFunc) http.HandlerFunc {
 	ctx := context.Background()
-	ctx = context.WithValue(ctx, "requestID", rand.Intn(100000))
+
+	var k key = "requestID"
+	ctx = context.WithValue(ctx, k, rand.Intn(100000))
 
 	return func(w http.ResponseWriter, r *http.Request) {
 		if err := apiFn(ctx, w, r); err != nil {
