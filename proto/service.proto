@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package  = ".";
+option go_package  = "../proto";
 
 service PriceFetcher  {
     rpc FetchPrice(PriceRequest) returns (PriceResponse);
