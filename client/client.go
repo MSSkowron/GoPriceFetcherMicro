@@ -11,14 +11,6 @@ import (
 	"google.golang.org/grpc"
 )
 
-// Client
-// client := client.NewClient("http://localhost:3000")
-// price, err := client.FetchPrice(context.Background(), "BTC")
-// if err != nil {
-// 	log.Fatalln(err)
-// }
-// fmt.Printf("%+v\n", price)
-
 func NewGRPCClient(remoteAddr string) (proto.PriceFetcherClient, error) {
 	conn, err := grpc.Dial(remoteAddr, grpc.WithInsecure())
 	if err != nil {
