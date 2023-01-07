@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-var priceMocks = map[string]float64{
+var prices = map[string]float64{
 	"BTC": 20_000.0,
 	"ETH": 200.0,
 }
@@ -20,14 +20,9 @@ type PriceFetcher interface {
 type priceFetcher struct{}
 
 func (s *priceFetcher) FetchPrice(ctx context.Context, ticker string) (float64, error) {
-	return mockPriceFetcher(ctx, ticker)
-}
-
-func mockPriceFetcher(ctx context.Context, ticker string) (float64, error) {
-	// mimic the HTTP roundtrip
 	time.Sleep(100 * time.Millisecond)
 
-	price, ok := priceMocks[ticker]
+	price, ok := prices[ticker]
 	if !ok {
 		return -1, fmt.Errorf("the given ticker (%s) is not supported", ticker)
 	}
