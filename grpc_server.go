@@ -2,17 +2,18 @@ package main
 
 import (
 	"context"
+	"math/rand"
 	"net"
 
 	"github.com/MSSkowron/GoMicroPriceFetcher/proto"
 	"google.golang.org/grpc"
 )
 
-func makeGRPCServerAndRun(listenAddr string, svc priceFetcher) error {
-	grpcServer := NewGRPCServer(&svc)
+func makeGRPCServerAndRun(listenAddr string, svc PriceFetcher) error {
+	grpcServer := NewGRPCServer(svc)
 
 	options := []grpc.ServerOption{}
-	server := grpc.NewServer(options)
+	server := grpc.NewServer(options...)
 
 	proto.RegisterPriceFetcherServer(server, grpcServer)
 
@@ -36,6 +37,8 @@ func NewGRPCServer(s PriceFetcher) *GRPCServer {
 }
 
 func (s *GRPCServer) FetchPrice(ctx context.Context, req *proto.PriceRequest) (*proto.PriceResponse, error) {
+	ctx = context.WithValue(ctx, "requestID", rand.Intn(100000))
+
 	price, err := s.svc.FetchPrice(ctx, req.Ticker)
 	if err != nil {
 		return nil, err
