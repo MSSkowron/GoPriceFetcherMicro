@@ -1,7 +1,7 @@
 ﻿# GoPriceFetcherMicro
 
-GoPriceFetcherMicro is a simple application written in Go language to fetch cryprocurrencies price. Prices are currently hard coded in server.go file. There are currently two available: BTC and ETH.
-HTTP API server is running on port 3000 and gRPC server is running on port 4000.
+GoPriceFetcherMicro is a simple microservice written in Go language to fetch cryprocurrencies price. Prices are currently hard coded in server.go file. There are currently two available: BTC and ETH.
+HTTP Server is running on port 3000 and gRPC Server is running on port 4000.
 
 ## Technologies
 
