@@ -19,7 +19,7 @@ func main() {
 	flag.Parse()
 
 	go func() {
-		if err := makeGRPCServerAndRun(*grpcAddr, svc); err != nil {
+		if err := MakeGRPCServerAndRun(*grpcAddr, svc); err != nil {
 			log.Fatalln(err)
 		}
 	}()

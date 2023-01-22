@@ -9,8 +9,8 @@ import (
 	"google.golang.org/grpc"
 )
 
-func makeGRPCServerAndRun(listenAddr string, svc PriceFetcher) error {
-	grpcServer := NewGRPCServer(svc)
+func MakeGRPCServerAndRun(listenAddr string, svc PriceFetcher) error {
+	grpcServer := newGRPCServer(svc)
 
 	options := []grpc.ServerOption{}
 	server := grpc.NewServer(options...)
@@ -30,7 +30,7 @@ type GRPCServer struct {
 	proto.UnimplementedPriceFetcherServer
 }
 
-func NewGRPCServer(s PriceFetcher) *GRPCServer {
+func newGRPCServer(s PriceFetcher) *GRPCServer {
 	return &GRPCServer{
 		svc: s,
 	}
