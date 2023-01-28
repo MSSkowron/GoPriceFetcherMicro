@@ -7,7 +7,7 @@ import (
 
 func main() {
 	var (
-		jsonAddr = flag.String("json", ":3000", "listen address the service is running")
+		restAddr = flag.String("rest", ":3000", "listen address the service is running")
 		grpcAddr = flag.String("grpc", ":4000", "listen address the service is running")
 		svc      = NewLoggingService(NewMetricsService(&priceFetcher{}))
 	)
@@ -19,5 +19,5 @@ func main() {
 		}
 	}()
 
-	NewRESTServer(*jsonAddr, svc).Run()
+	NewRESTServer(*restAddr, svc).Run()
 }
