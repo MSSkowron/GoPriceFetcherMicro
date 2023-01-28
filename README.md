@@ -32,7 +32,6 @@ _NewClient_ creates a new instance of the _Client_ struct. We only need to pass 
 In order to fetch a price use _FetchPrice_ method on the client instance. \
 Of course in order to fetch a price we need to make a HTTP request specyfing _ticker_ as a request's query parameter. \
 For example: http://localhost:3000/?ticker=BTC \
-
 JSON Response Body:
   ```json
   {
