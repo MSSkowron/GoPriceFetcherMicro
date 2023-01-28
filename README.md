@@ -26,7 +26,7 @@ docker-compose up -d
 
 ## How to use it?
 
-- *REST Client* \
+- ***REST Client*** \
 We can use _Client_ struct from the _client_ package. \
 _NewClient_ creates a new instance of the _Client_ struct. We only need to pass the server listening address. In this case it is ":3000". \
 In order to fetch a price use _FetchPrice_ method on the client instance. \
@@ -40,7 +40,7 @@ JSON Response Body:
   }
   ```
 
-- *gRPC Client* \
+- ***gRPC Client*** \
 We can use _proto.PriceFetcherClient_ struct from the _client_ package. \
 _NewGRPCClient_ creates a new instance of the _proto.PriceFetcherClient_ struct. We only need to pass the server listening address. In this case it is ":4000". \
 In order to fetch a price use _FetchPrice_ method on the _proto.PriceFetcherClient_ instance.
