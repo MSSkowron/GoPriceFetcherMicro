@@ -13,19 +13,19 @@ import (
 
 type APIFunc func(context.Context, http.ResponseWriter, *http.Request) error
 
-type JSONAPIServer struct {
+type RESTServer struct {
 	listenAddr string
 	svc        PriceFetcher
 }
 
-func NewJSONAPIServer(a string, s PriceFetcher) *JSONAPIServer {
-	return &JSONAPIServer{
+func NewRESTServer(a string, s PriceFetcher) *RESTServer {
+	return &RESTServer{
 		listenAddr: a,
 		svc:        s,
 	}
 }
 
-func (s *JSONAPIServer) Run() {
+func (s *RESTServer) Run() {
 	http.HandleFunc("/", makeHTTPHandler(s.handleFetchPrice))
 
 	if err := http.ListenAndServe(s.listenAddr, nil); err != nil {
@@ -47,7 +47,7 @@ func makeHTTPHandler(apiFn APIFunc) http.HandlerFunc {
 	}
 }
 
-func (s *JSONAPIServer) handleFetchPrice(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
+func (s *RESTServer) handleFetchPrice(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
 	ticker := r.URL.Query().Get("ticker")
 
 	price, err := s.svc.FetchPrice(ctx, ticker)

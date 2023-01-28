@@ -19,6 +19,5 @@ func main() {
 		}
 	}()
 
-	jsonServer := NewJSONAPIServer(*jsonAddr, svc)
-	jsonServer.Run()
+	NewRESTServer(*jsonAddr, svc).Run()
 }
