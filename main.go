@@ -1,13 +1,8 @@
 package main
 
 import (
-	"context"
 	"flag"
-	"fmt"
 	"log"
-
-	"github.com/MSSkowron/GoMicroPriceFetcher/client"
-	"github.com/MSSkowron/GoMicroPriceFetcher/proto"
 )
 
 func main() {
@@ -26,16 +21,4 @@ func main() {
 
 	jsonServer := NewJSONAPIServer(*jsonAddr, svc)
 	jsonServer.Run()
-
-	client, err := client.NewGRPCClient(":4000")
-	if err != nil {
-		log.Fatalln()
-	}
-
-	response, err := client.FetchPrice(context.Background(), &proto.PriceRequest{Ticker: "BTC"})
-	if err != nil {
-		log.Fatalln()
-	}
-
-	fmt.Println(response.Price)
 }
